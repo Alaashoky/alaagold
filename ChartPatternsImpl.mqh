@@ -55,7 +55,7 @@ bool IsTriangleBearish(MqlRates &rates[], int lookback)
 bool IsFlagBullish(MqlRates &rates[], int lookback)
 {
     int size = ArraySize(rates);
-    if(size < lookback) return false;
+    if(size < lookback || lookback < 2) return false;
 
     double pole_low  = rates[lookback-1].low;
     double pole_high = rates[lookback/2].high;
@@ -76,7 +76,7 @@ bool IsFlagBullish(MqlRates &rates[], int lookback)
 bool IsFlagBearish(MqlRates &rates[], int lookback)
 {
     int size = ArraySize(rates);
-    if(size < lookback) return false;
+    if(size < lookback || lookback < 2) return false;
 
     double pole_high = rates[lookback-1].high;
     double pole_low  = rates[lookback/2].low;

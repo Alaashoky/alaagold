@@ -19,7 +19,7 @@ bool IsGartleyBullish(MqlRates &rates[])
     if(size < HP_Lookback) return false;
 
     int x_idx = -1, a_idx = -1, b_idx = -1, c_idx = -1;
-    for(int i = HP_Lookback - 1; i > 3; i--)
+    for(int i = HP_Lookback - 2; i > 3; i--)
         if(rates[i].high > rates[i+1].high && rates[i].high > rates[i-1].high && x_idx == -1) { x_idx = i; break; }
     if(x_idx == -1) return false;
 
@@ -54,7 +54,7 @@ bool IsGartleyBearish(MqlRates &rates[])
     if(size < HP_Lookback) return false;
 
     int x_idx = -1, a_idx = -1, b_idx = -1, c_idx = -1;
-    for(int i = HP_Lookback - 1; i > 3; i--)
+    for(int i = HP_Lookback - 2; i > 3; i--)
         if(rates[i].low < rates[i+1].low && rates[i].low < rates[i-1].low && x_idx == -1) { x_idx = i; break; }
     if(x_idx == -1) return false;
 

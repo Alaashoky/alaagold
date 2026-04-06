@@ -25,7 +25,7 @@ void IdentifySupportResistanceLevels()
     support_count = 0;
     resistance_count = 0;
 
-    for(int i = 10; i < 100 && support_count < 10; i++) {
+    for(int i = 10; i < 100 && i + 2 < copied && support_count < 10; i++) {
         if(rates[i].low < rates[i-1].low && rates[i].low < rates[i+1].low &&
            rates[i].low < rates[i-2].low && rates[i].low < rates[i+2].low)
         {
@@ -33,7 +33,7 @@ void IdentifySupportResistanceLevels()
         }
     }
 
-    for(int i = 10; i < 100 && resistance_count < 10; i++) {
+    for(int i = 10; i < 100 && i + 2 < copied && resistance_count < 10; i++) {
         if(rates[i].high > rates[i-1].high && rates[i].high > rates[i+1].high &&
            rates[i].high > rates[i-2].high && rates[i].high > rates[i+2].high)
         {
@@ -61,7 +61,8 @@ bool IsSupportValid(MqlRates &rates[], double level)
 {
     int test_count = 0;
     double tolerance = 0.0005 * level;
-    for(int i = 0; i < 200; i++)
+    int size = ArraySize(rates);
+    for(int i = 0; i < size; i++)
         if(MathAbs(rates[i].low - level) <= tolerance) { test_count++; if(test_count >= 2) return true; }
     return false;
 }
@@ -70,7 +71,8 @@ bool IsResistanceValid(MqlRates &rates[], double level)
 {
     int test_count = 0;
     double tolerance = 0.0005 * level;
-    for(int i = 0; i < 200; i++)
+    int size = ArraySize(rates);
+    for(int i = 0; i < size; i++)
         if(MathAbs(rates[i].high - level) <= tolerance) { test_count++; if(test_count >= 2) return true; }
     return false;
 }
