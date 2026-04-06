@@ -177,7 +177,7 @@ bool IsMorningStar(MqlRates &rates[])
     bool bearish_first = rates[2].close < rates[2].open;
     bool small_middle  = body2 < body1 * 0.5;
     bool bullish_last  = rates[0].close > rates[0].open;
-    bool good_recovery = rates[0].close > (rates[2].open + rates[2].close)/2 * 0.9;
+    bool good_recovery = rates[0].close > ((rates[2].open + rates[2].close) / 2.0) * 0.9;
     return bearish_first && small_middle && bullish_last && good_recovery;
 }
 
@@ -189,7 +189,7 @@ bool IsEveningStar(MqlRates &rates[])
     bool bullish_first = rates[2].close > rates[2].open;
     bool small_middle  = body2 < body1 * 0.5;
     bool bearish_last  = rates[0].close < rates[0].open;
-    bool good_decline  = rates[0].close < (rates[2].open + rates[2].close)/2 * 1.1;
+    bool good_decline  = rates[0].close < ((rates[2].open + rates[2].close) / 2.0) * 1.1;
     return bullish_first && small_middle && bearish_last && good_decline;
 }
 

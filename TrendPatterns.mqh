@@ -28,7 +28,7 @@ bool IsBullishTrendBreakout(MqlRates &rates[])
 
         if(rates[i].high > rates[i+1].high && rates[i].high > rates[i-1].high) {
             if(count_touches == 0) { trendline_value = rates[i].high; count_touches++; }
-            else if(count_touches == 1) { slope = (rates[i].high - trendline_value)/(i); trendline_value = rates[i].high; count_touches++; }
+            else if(count_touches == 1) { slope = (i > 0) ? (rates[i].high - trendline_value)/(double)i : 0; trendline_value = rates[i].high; count_touches++; }
             else {
                 double expected_value = trendline_value - (slope*(i));
                 if(MathAbs(rates[i].high - expected_value) < 20*Point()) { trendline_value = rates[i].high; count_touches++; }
@@ -61,7 +61,7 @@ bool IsBearishTrendBreakout(MqlRates &rates[])
 
         if(rates[i].low < rates[i+1].low && rates[i].low < rates[i-1].low) {
             if(count_touches == 0) { trendline_value = rates[i].low; count_touches++; }
-            else if(count_touches == 1) { slope = (rates[i].low - trendline_value)/(i); trendline_value = rates[i].low; count_touches++; }
+            else if(count_touches == 1) { slope = (i > 0) ? (rates[i].low - trendline_value)/(double)i : 0; trendline_value = rates[i].low; count_touches++; }
             else {
                 double expected_value = trendline_value + (slope*(i));
                 if(MathAbs(rates[i].low - expected_value) < 20*Point()) { trendline_value = rates[i].low; count_touches++; }

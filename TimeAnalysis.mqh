@@ -35,7 +35,8 @@ bool IsTokyoSession()
 {
     MqlDateTime dt;
     TimeToStruct(TimeCurrent(), dt);
-    return (dt.hour >= TA_TokyoOpenHour || dt.hour < TA_TokyoCloseHour);
+    // Tokyo session (0:00 - 09:00 GMT) - does not cross midnight
+    return (dt.hour >= TA_TokyoOpenHour && dt.hour < TA_TokyoCloseHour);
 }
 
 bool IsHighVolatilityPeriod()

@@ -358,7 +358,20 @@ void OnTick()
 
     // Calculate ATR for position sizing
     double atr_val = GetATR(0);
-    if(atr_val <= 0) atr_val = StopLoss_Pips * _Point * 10;
+    if(atr_val <= 0)
+    {
+        // Fallback: estimate ATR from recent price range
+        MqlRates fb_rates[];
+        ArraySetAsSeries(fb_rates, true);
+        if(CopyRates(Symbol(), Main_Timeframe, 0, 5, fb_rates) >= 5)
+        {
+            double range_sum = 0;
+            for(int k = 0; k < 5; k++)
+                range_sum += fb_rates[k].high - fb_rates[k].low;
+            atr_val = range_sum / 5.0;
+        }
+        if(atr_val <= 0) atr_val = StopLoss_Pips * _Point * 10;
+    }
 
     // Execute trades based on confirmation threshold
     if(buy_conf >= Min_Confirmations && buy_conf > sell_conf)
