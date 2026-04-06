@@ -10,11 +10,6 @@
 #import
 
 extern ENUM_TIMEFRAMES MAC_Timeframe;
-extern int MA_Fast_Period;
-extern int MA_Slow_Period;
-extern int MA_Trend_Period;
-extern ENUM_MA_METHOD MA_Method;
-extern ENUM_APPLIED_PRICE MA_Applied_Price;
 
 double GetMA(int period, int shift = 0, ENUM_MA_METHOD method = MODE_EMA)
 {

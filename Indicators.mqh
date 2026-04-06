@@ -10,13 +10,6 @@
 #import
 
 extern ENUM_TIMEFRAMES IND_Timeframe;
-extern int RSI_Period;
-extern int MACD_Fast;
-extern int MACD_Slow;
-extern int MACD_Signal;
-extern int BB_Period;
-extern double BB_Deviation;
-extern int ATR_Period;
 
 double GetRSI(int shift = 0)
 {

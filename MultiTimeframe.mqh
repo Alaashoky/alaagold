@@ -11,7 +11,6 @@
 
 extern ENUM_TIMEFRAMES MTF_HigherTF;
 extern ENUM_TIMEFRAMES MTF_LowerTF;
-extern int             MTF_MA_Period;
 
 bool IsHigherTimeframeBullish()
 {

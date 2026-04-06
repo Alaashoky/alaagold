@@ -10,7 +10,6 @@
 #import
 
 extern ENUM_TIMEFRAMES VA_Timeframe;
-extern int VA_MA_Period;
 
 double GetAverageVolume(int periods = 20)
 {
