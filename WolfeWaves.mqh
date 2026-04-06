@@ -18,7 +18,7 @@ bool IsBullishWolfeWave(MqlRates &rates[])
     int size = ArraySize(rates);
     if(size < WW_Lookback) { DebugPrint("WolfeWaves: not enough data"); return false; }
 
-    for(int i = 10; i < WW_Lookback - 5; i++) {
+    for(int i = 10; i + 4 < size && i < WW_Lookback - 5; i++) {
         double p1 = rates[i+4].high;
         double p2 = rates[i+3].low;
         double p3 = rates[i+2].high;
@@ -42,7 +42,7 @@ bool IsBearishWolfeWave(MqlRates &rates[])
     int size = ArraySize(rates);
     if(size < WW_Lookback) { DebugPrint("WolfeWaves: not enough data"); return false; }
 
-    for(int i = 10; i < WW_Lookback - 5; i++) {
+    for(int i = 10; i + 4 < size && i < WW_Lookback - 5; i++) {
         double p1 = rates[i+4].low;
         double p2 = rates[i+3].high;
         double p3 = rates[i+2].low;

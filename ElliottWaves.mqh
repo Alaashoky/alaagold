@@ -55,7 +55,7 @@ bool IsWave5BuySetup(MqlRates &rates[])
     int size = ArraySize(rates);
     if(size < EW_Lookback) { DebugPrint("ElliottWaves: not enough data"); return false; }
 
-    for(int i = 5; i < EW_Lookback - 5; i++)
+    for(int i = 5; i + 5 < size && i < EW_Lookback - 5; i++)
         if(IsImpulsiveWaveBullish(rates, i)) return true;
 
     return false;
@@ -66,7 +66,7 @@ bool IsWave5SellSetup(MqlRates &rates[])
     int size = ArraySize(rates);
     if(size < EW_Lookback) { DebugPrint("ElliottWaves: not enough data"); return false; }
 
-    for(int i = 5; i < EW_Lookback - 5; i++)
+    for(int i = 5; i + 5 < size && i < EW_Lookback - 5; i++)
         if(IsImpulsiveWaveBearish(rates, i)) return true;
 
     return false;

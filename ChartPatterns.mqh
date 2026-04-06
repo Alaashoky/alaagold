@@ -18,7 +18,7 @@ bool IsHeadAndShouldersBullish(MqlRates &rates[])
     int size = ArraySize(rates);
     if(size < CHT_Lookback) return false;
 
-    for(int i = 5; i < CHT_Lookback - 5; i++) {
+    for(int i = 5; i + 4 < size && i < CHT_Lookback - 5; i++) {
         double left_shoulder  = rates[i+4].low;
         double left_peak      = rates[i+3].high;
         double head           = rates[i+2].low;
@@ -42,7 +42,7 @@ bool IsHeadAndShouldersBearish(MqlRates &rates[])
     int size = ArraySize(rates);
     if(size < CHT_Lookback) return false;
 
-    for(int i = 5; i < CHT_Lookback - 5; i++) {
+    for(int i = 5; i + 4 < size && i < CHT_Lookback - 5; i++) {
         double left_shoulder  = rates[i+4].high;
         double left_trough    = rates[i+3].low;
         double head           = rates[i+2].high;
@@ -65,7 +65,7 @@ bool IsDoubleBottom(MqlRates &rates[])
 {
     int size = ArraySize(rates);
     if(size < CHT_Lookback) return false;
-    for(int i = 5; i < CHT_Lookback - 2; i++) {
+    for(int i = 5; i + 2 < size && i < CHT_Lookback - 2; i++) {
         double bottom1   = rates[i+2].low;
         double mid_high  = rates[i+1].high;
         double bottom2   = rates[i].low;
@@ -81,7 +81,7 @@ bool IsDoubleTop(MqlRates &rates[])
 {
     int size = ArraySize(rates);
     if(size < CHT_Lookback) return false;
-    for(int i = 5; i < CHT_Lookback - 2; i++) {
+    for(int i = 5; i + 2 < size && i < CHT_Lookback - 2; i++) {
         double top1     = rates[i+2].high;
         double mid_low  = rates[i+1].low;
         double top2     = rates[i].high;
