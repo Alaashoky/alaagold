@@ -10,11 +10,6 @@
 #import
 
 extern ENUM_TIMEFRAMES DIV_Timeframe;
-extern int DIV_RSI_Period;
-extern int DIV_MACD_Fast;
-extern int DIV_MACD_Slow;
-extern int DIV_MACD_Signal;
-extern int DIV_Lookback;
 
 bool IsBullishRSIDivergence()
 {
